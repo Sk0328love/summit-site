@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Summit Parts Trading</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Inter:wght@400;500;600&display=swap">
+<style>
+:root{
+  --bg:#F8FAFC; --card:#FFFFFF; --ink:#1E293B; --ink-2:#475569; --muted:#64748B; --line:#E2E8F0; --field:#F8FAFC;
+  --accent:#1D4E89; --accent-ink:#FFFFFF; --accent-soft:#E6EEF8;
+  --gold:#B8894A; --amber:#B45309; --amber-soft:#FEF3C7; --red:#B91C1C; --red-soft:#FEE2E2; --ok:#15803D; --ok-soft:#DCFCE7;
+  --head:"Montserrat","Helvetica Neue",Arial,sans-serif;
+  --body:"Inter","Segoe UI",Helvetica,Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#0F172A; --card:#1E293B; --ink:#E2E8F0; --ink-2:#CBD5E1; --muted:#94A3B8; --line:#334155; --field:#0F172A;
+    --accent:#3B82F6; --accent-ink:#FFFFFF; --accent-soft:#172554;
+    --gold:#D6A865; --amber:#FBBF24; --amber-soft:#3A2A0A; --red:#F87171; --red-soft:#3B1414; --ok:#4ADE80; --ok-soft:#10301D;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#0F172A; --card:#1E293B; --ink:#E2E8F0; --ink-2:#CBD5E1; --muted:#94A3B8; --line:#334155; --field:#0F172A;
+  --accent:#3B82F6; --accent-ink:#FFFFFF; --accent-soft:#172554;
+  --gold:#D6A865; --amber:#FBBF24; --amber-soft:#3A2A0A; --red:#F87171; --red-soft:#3B1414; --ok:#4ADE80; --ok-soft:#10301D;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;transition:background-color .25s,color .25s}
+.wrap{max-width:1160px;margin:0 auto;padding-inline:20px}
+a{color:var(--accent)}
+h1,h2,h3{font-family:var(--head);letter-spacing:-.01em;text-wrap:balance;margin:0}
+.preview-flag{background:var(--amber-soft);color:var(--amber);font-weight:600;font-size:13px;text-align:center;padding:8px 16px}
+
+/* header */
+header.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.bar .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:14px}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--head);font-weight:800;font-size:18px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);text-decoration:none}
+.logo span{color:var(--muted);font-weight:700}
+.logo svg{width:38px;height:22px;flex:none}
+nav{display:flex;align-items:center;gap:22px}
+nav a.l{color:var(--ink-2);text-decoration:none;font-size:14.5px;font-weight:500}
+nav a.l:hover{color:var(--accent)}
+.toggle{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:7px 12px;font:500 13.5px var(--body);cursor:pointer}
+.toggle svg{width:16px;height:16px}
+@media (max-width:820px){nav a.l{display:none}}
+
+/* hero */
+.hero{padding-block:64px 56px}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:40px;align-items:center}
+@media (max-width:820px){.hero .wrap{grid-template-columns:1fr}.hero-art{max-width:220px}}
+.badge{display:inline-block;font:600 12px var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--accent);background:var(--accent-soft);border-radius:999px;padding:6px 14px;margin-bottom:18px}
+.hero h1{font-size:clamp(36px,5.2vw,58px);font-weight:800;line-height:1.05;margin-bottom:18px}
+.hero p.sub{font-size:18.5px;color:var(--ink-2);max-width:36em;margin:0 0 28px}
+.btns{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-block;font:700 15px var(--head);letter-spacing:.04em;text-transform:uppercase;text-decoration:none;border-radius:8px;padding:14px 22px}
+.btn.primary{background:var(--accent);color:var(--accent-ink)}
+.btn.ghost{border:1px solid var(--line);color:var(--ink);background:var(--card)}
+.hero-art svg{width:100%;height:auto;display:block}
+.hero-art .globe{fill:var(--accent-soft);stroke:var(--accent);stroke-width:1.4}
+.hero-art .grid{fill:none;stroke:var(--accent);stroke-opacity:.25;stroke-width:1}
+.hero-art .route{fill:none;stroke:var(--gold);stroke-width:2;stroke-linecap:round;stroke-dasharray:4 5}
+.hero-art .port{fill:var(--gold);stroke:var(--card);stroke-width:1.5}
+@media (prefers-reduced-motion:no-preference){.hero-art .route{animation:flow 3s linear infinite}}
+@keyframes flow{to{stroke-dashoffset:-18}}
+
+/* sections */
+section.block{padding-block:56px;border-top:1px solid var(--line)}
+.eyebrow{font:600 12px var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0 0 10px}
+section.block h2{font-size:clamp(28px,3.4vw,38px);font-weight:800;margin-bottom:12px}
+.lead{color:var(--ink-2);font-size:17px;max-width:44em;margin:0 0 28px}
+.cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+@media (max-width:820px){.cols{grid-template-columns:1fr}}
+.col{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:24px}
+.col .n{font:700 13px var(--head);color:var(--gold);letter-spacing:.1em;text-transform:uppercase}
+.col h3{font-size:22px;font-weight:700;margin:6px 0 8px}
+.col p{margin:0;color:var(--ink-2);font-size:15.5px}
+.cats{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
+.cats li{font-size:14px;font-weight:500;padding:6px 14px;border:1px solid var(--line);border-radius:999px;background:var(--card)}
+
+/* request */
+.req{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:36px;align-items:start}
+@media (max-width:900px){.req{grid-template-columns:1fr}}
+.facts{display:grid;gap:12px;margin:22px 0}
+.fact{display:grid;grid-template-columns:9em 1fr;gap:12px;font-size:15.5px;color:var(--ink-2)}
+.fact b{font:600 12px var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding-top:3px}
+@media (max-width:420px){.fact{grid-template-columns:1fr;gap:2px}}
+.note{padding:14px 16px;border-radius:10px;background:var(--amber-soft);color:var(--amber);font-size:15px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:28px}
+@media (max-width:480px){.panel{padding:18px}}
+.panel h2{font-size:28px;margin-bottom:4px}
+.panel .sub{color:var(--ink-2);margin:0 0 20px;font-size:15px}
+form{display:grid;gap:16px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:540px){.row{grid-template-columns:1fr}}
+label{display:block;font-weight:600;font-size:14px;margin-bottom:5px}
+label .opt{font-weight:400;color:var(--muted)}
+input[type=text],input[type=email],input[type=tel],textarea{width:100%;font:inherit;font-size:15px;color:var(--ink);background:var(--field);border:1px solid var(--line);border-radius:8px;padding:11px 12px;transition:border-color .2s,background-color .25s}
+textarea{min-height:150px;resize:vertical;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:14px}
+input:focus-visible,textarea:focus-visible,button:focus-visible,a:focus-visible,.drop:focus-visible,.urg label:focus-within,.check input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.hint{font-size:13px;color:var(--muted);margin-top:5px}
+.drop{border:1.5px dashed var(--line);border-radius:8px;padding:16px;text-align:center;background:var(--field);color:var(--ink-2);font-size:14px;cursor:pointer}
+.drop.over{border-color:var(--accent);background:var(--accent-soft)}
+.drop input{display:none}
+.files{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:4px;font-size:13px;color:var(--ink-2)}
+.files li{display:flex;justify-content:space-between;gap:8px}
+.files button{background:none;border:0;color:var(--red);cursor:pointer;font:inherit}
+fieldset{border:0;margin:0;padding:0}
+legend{font-weight:600;font-size:14px;margin-bottom:6px;padding:0}
+.urg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+@media (max-width:540px){.urg{grid-template-columns:1fr}}
+.urg label{margin:0;border:1px solid var(--line);border-radius:8px;padding:10px 12px;cursor:pointer;background:var(--field);font-weight:400;font-size:13.5px;line-height:1.35}
+.urg label b{display:block;font-weight:600;font-size:14.5px}
+.urg input{position:absolute;opacity:0;pointer-events:none}
+.urg label:has(input:checked){border-color:var(--accent);background:var(--accent-soft)}
+.urg label.aog:has(input:checked){border-color:var(--red);background:var(--red-soft)}
+.urg label.aog b{color:var(--red)}
+.check{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--ink-2)}
+.check input{margin-top:4px;width:16px;height:16px;flex:none}
+.check label{font-weight:400;margin:0}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+button.send{font:700 16px var(--head);letter-spacing:.05em;text-transform:uppercase;background:var(--accent);color:var(--accent-ink);border:0;border-radius:8px;padding:15px 18px;cursor:pointer}
+button.send:disabled{opacity:.6;cursor:wait}
+.msg{border-radius:8px;padding:12px 14px;font-size:14.5px}
+.msg.ok{background:var(--ok-soft);color:var(--ok)}
+.msg.err{background:var(--red-soft);color:var(--red)}
+.msg.info{background:var(--amber-soft);color:var(--amber)}
+.msg b{font-family:ui-monospace,Menlo,monospace}
+
+/* faq */
+.faq-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 40px}
+@media (max-width:760px){.faq-grid{grid-template-columns:1fr}}
+details{border-top:1px solid var(--line);padding-block:14px}
+summary{cursor:pointer;font-weight:600;font-size:16.5px;list-style:none;display:flex;justify-content:space-between;gap:12px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--muted)}
+details[open] summary::after{content:"\2013"}
+details p{margin:10px 0 0;color:var(--ink-2);max-width:62ch;font-size:15px}
+
+footer.foot{border-top:1px solid var(--line);padding-block:32px 40px;color:var(--muted);font-size:14px}
+.foot .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.foot .c{display:grid;gap:4px}
+.foot .c b{color:var(--ink);font-family:var(--head);letter-spacing:.06em;text-transform:uppercase;font-size:14px}
+.foot .v{user-select:all;color:var(--ink-2)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<div class="preview-flag" id="previewFlag">PREVIEW ONLY — this page is not live yet.</div>
+
+<header class="bar">
+  <div class="wrap">
+    <a class="logo" href="#top"><svg viewBox="0 0 64 36" aria-hidden="true"><path d="M4 32 L24 8 L34 20 L40 13 L60 32" fill="none" stroke="var(--gold)" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/></svg>Summit <span>Parts Trading</span></a>
+    <nav aria-label="Main">
+      <a class="l" href="#about">About us</a>
+      <a class="l" href="#how">How we work</a>
+      <a class="l" href="#faq">Questions</a>
+      <a class="l" href="#rfq">Request a quote</a>
+      <button class="toggle" id="themeBtn" type="button" aria-label="Switch between light and dark mode"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg><span id="themeLbl">Dark</span></button>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <span class="badge">International parts trading &amp; sourcing</span>
+        <h1>Hard to find parts. One source. One quote.</h1>
+        <p class="sub">Send us your parts list. We source it through our network of suppliers in the U.S. and worldwide, and the supplier ships it straight to you.</p>
+        <div class="btns"><a class="btn primary" href="#rfq">Request a quote</a><a class="btn ghost" href="#how">How we work</a></div>
+      </div>
+      <div class="hero-art" aria-hidden="true"><svg id="globe" viewBox="-100 -100 200 200"></svg></div>
+    </div>
+  </section>
+
+  <section class="block" id="about">
+    <div class="wrap">
+      <p class="eyebrow">About us</p>
+      <h2>One point of contact for your whole list</h2>
+      <p class="lead">Whether you need one difficult part or a hundred line items, Summit Parts Trading gives you one contact and one consolidated quote. You shouldn&rsquo;t have to spend hours calling suppliers and chasing individual parts. Send us the list and we do the searching.</p>
+      <ul class="cats" aria-label="What we source"><li>Aviation</li><li>Electronic components</li><li>Industrial spares</li></ul>
+    </div>
+  </section>
+
+  <section class="block" id="how">
+    <div class="wrap">
+      <p class="eyebrow">How we work</p>
+      <h2>From your list to your door</h2>
+      <p class="lead">Every order runs the same three steps.</p>
+      <div class="cols">
+        <div class="col"><span class="n">Step 1</span><h3>Source</h3><p>We search our supplier network in the U.S. and abroad, and confirm availability, condition and the paperwork each part comes with.</p></div>
+        <div class="col"><span class="n">Step 2</span><h3>Quote &amp; check</h3><p>You get one quote for the whole list, with price, lead time and freight shown. Every order is checked against U.S. export rules before it ships.</p></div>
+        <div class="col"><span class="n">Step 3</span><h3>Ship &amp; follow up</h3><p>After payment, the supplier ships directly to you with tracking. We stay your contact until the parts arrive.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap req">
+      <div>
+        <p class="eyebrow">Send us your parts list</p>
+        <h2>What to send</h2>
+        <p class="lead" style="margin-bottom:0">Part numbers are best. Add quantities, the manufacturer or model, and any condition, certification or paperwork you need. We reply with availability, price, condition, lead time and shipping.</p>
+        <div class="facts">
+          <div class="fact"><b>Quote</b><span>Same business day whenever possible</span></div>
+          <div class="fact"><b>Minimum order</b><span>$250 before freight</span></div>
+          <div class="fact"><b>Payment</b><span>Credit card or bank wire, before shipment</span></div>
+          <div class="fact"><b>Shipping</b><span>Direct from the supplier&rsquo;s warehouse to you</span></div>
+        </div>
+        <p class="note"><strong>Urgent or AOG?</strong> Choose it in the form. Urgent and AOG requests get priority.</p>
+      </div>
+
+      <div class="panel" id="rfq">
+        <h2>Request a quote</h2>
+        <p class="sub">Type your list, or attach a spreadsheet, PDF or photo of the part or its label.</p>
+        <form id="rfqForm" novalidate>
+          <div class="row">
+            <div><label for="f_name">Your name</label><input type="text" id="f_name" name="name" autocomplete="name" required></div>
+            <div><label for="f_company">Company</label><input type="text" id="f_company" name="company" autocomplete="organization" placeholder="e.g. Pacific Air Maintenance Ltd." required></div>
+          </div>
+          <div class="row">
+            <div><label for="f_email">Email</label><input type="email" id="f_email" name="email" autocomplete="email" required></div>
+            <div><label for="f_phone">Phone / WhatsApp</label><input type="tel" id="f_phone" name="phone" autocomplete="tel" required></div>
+          </div>
+          <div class="row">
+            <div><label for="f_country">Ship to country</label><input type="text" id="f_country" name="country" autocomplete="country-name" required></div>
+            <div><label for="f_model">Equipment / model <span class="opt">(optional)</span></label><input type="text" id="f_model" name="model" placeholder="e.g. Cessna 172S, CFM56-7B"></div>
+          </div>
+          <div>
+            <label for="f_parts">Parts list</label>
+            <textarea id="f_parts" name="parts" placeholder="Part number — quantity — condition, one per line. For example:&#10;CH48110-1 oil filter — 12 — new, maker's CoC&#10;STM32F407VGT6 — 500&#10;SKF 6205-2RS bearing — 40"></textarea>
+          </div>
+          <div>
+            <label for="f_files">Attach files <span class="opt">(optional — Excel, CSV, PDF, photo; up to 5 files, 10 MB total)</span></label>
+            <div class="drop" id="drop" tabindex="0" role="button" aria-label="Choose files to attach">Drop files here or <u>choose files</u><input type="file" id="f_files" multiple accept=".xlsx,.xls,.csv,.pdf,.jpg,.jpeg,.png,.heic,.webp,.txt,.docx"></div>
+            <ul class="files" id="fileList"></ul>
+          </div>
+          <fieldset>
+            <legend>Priority</legend>
+            <div class="urg">
+              <label><input type="radio" name="urgency" value="Standard" id="u_std" checked><b>Standard</b>Normal lead time</label>
+              <label><input type="radio" name="urgency" value="Urgent" id="u_urg"><b>Urgent</b>Needed soon to avoid downtime</label>
+              <label class="aog"><input type="radio" name="urgency" value="AOG" id="u_aog"><b>AOG / down</b>Aircraft or machine is down now</label>
+            </div>
+          </fieldset>
+          <div class="check"><input type="checkbox" id="f_docs" name="docs"><label for="f_docs">I need certification or traceability paperwork (for example 8130-3, EASA Form 1, maker&rsquo;s certificate).</label></div>
+          <div class="check"><input type="checkbox" id="f_terms" name="terms" required><label for="f_terms">I understand the minimum order is $250 and payment is by credit card or bank wire before shipment.</label></div>
+          <div class="hp" aria-hidden="true"><label for="f_website">Website</label><input type="text" id="f_website" name="website" tabindex="-1" autocomplete="off"></div>
+          <div id="formMsg" class="msg" role="alert" hidden></div>
+          <button type="submit" class="send" id="sendBtn">Send my parts list</button>
+          <div class="hint">No military or ITAR controlled parts.</div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="faq">
+    <div class="wrap">
+      <p class="eyebrow">Questions</p>
+      <h2>Frequently asked questions</h2>
+      <div class="faq-grid">
+        <div>
+          <details open><summary>How quickly will I receive a quote?</summary><p>Our target is the same business day whenever possible. Urgent and AOG requests receive priority. Difficult or obsolete parts can take longer, and we&rsquo;ll keep you informed while we search.</p></details>
+          <details><summary>Can I send a large parts list?</summary><p>Yes. Send one part number or an entire BOM or parts list. You&rsquo;ll have one point of contact for the request.</p></details>
+          <details><summary>Where do the parts come from?</summary><p>We source through independent supply partners in the United States and internationally. Your quote identifies the offered part, condition, availability and applicable documentation.</p></details>
+          <details><summary>Are the parts genuine?</summary><p>We quote parts that our supply partners represent as genuine. If traceability, certification, manufacturer documentation or specific paperwork is required, tell us before ordering and we will confirm what is available in writing.</p></details>
+          <details><summary>How do I pay?</summary><p>After you accept a quote, we send payment instructions. Payment can be made by credit card through a secure payment link or by bank wire. Payment is required before shipment.</p></details>
+        </div>
+        <div>
+          <details><summary>How does shipping work?</summary><p>Orders generally ship directly from the supplying warehouse to your location. Freight is shown separately on the quote and tracking is provided when available.</p><p>For international orders, the buyer is responsible for applicable customs charges, duties and taxes unless the quote specifically states otherwise.</p></details>
+          <details><summary>What if there is a problem with my order?</summary><p>Contact us promptly after delivery. Returns, replacements and refunds are subject to the terms stated on your quote and the applicable supplier terms. Installed, altered or used parts generally cannot be returned.</p></details>
+          <details><summary>Do you offer credit terms?</summary><p>Not currently. We keep the process simple: quote, acceptance, payment and shipment. There is no account setup required.</p></details>
+          <details><summary>What parts don&rsquo;t you source?</summary><p>We do not sell military or ITAR controlled parts. Transactions are subject to applicable U.S. export laws and screening requirements. We may request end use, end user and destination information before accepting an order.</p></details>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="c"><b>Summit Parts Trading</b><span class="v">scott@summitcreditorcapital.com</span><span class="v">+1 (949) 513-0881</span></div>
+    <div class="c" style="max-width:34em"><span>&copy; 2026 Summit Parts Trading. All prices are quoted in U.S. dollars.</span><span>Availability, pricing and delivery are subject to confirmation at the time of order.</span></div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  /* theme */
+  var root=document.documentElement, btn=document.getElementById('themeBtn'), lbl=document.getElementById('themeLbl');
+  function current(){ var t=root.getAttribute('data-theme'); if(t) return t; return window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'; }
+  function paint(){ lbl.textContent = current()==='dark' ? 'Light' : 'Dark'; }
+  try{ var saved=localStorage.getItem('spt-theme'); if(saved) root.setAttribute('data-theme',saved); }catch(e){}
+  paint();
+  btn.addEventListener('click',function(){ var next=current()==='dark'?'light':'dark'; root.setAttribute('data-theme',next); try{localStorage.setItem('spt-theme',next);}catch(e){} paint(); });
+
+  /* globe */
+  var ns="http://www.w3.org/2000/svg", svg=document.getElementById('globe');
+  function el(t,a){var e=document.createElementNS(ns,t);for(var k in a)e.setAttribute(k,a[k]);return e;}
+  svg.appendChild(el('circle',{cx:0,cy:0,r:88,'class':'globe'}));
+  [30,60].forEach(function(r){svg.appendChild(el('ellipse',{cx:0,cy:0,rx:r,ry:88,'class':'grid'}));});
+  [-55,-25,0,25,55].forEach(function(y){var w=Math.sqrt(88*88-y*y);svg.appendChild(el('line',{x1:-w,y1:y,x2:w,y2:y,'class':'grid'}));});
+  var pts=[[-62,-30],[48,-44],[58,38],[-20,50],[10,-6]], routes=[[0,1],[0,2],[1,3],[3,4],[4,2]];
+  routes.forEach(function(r,i){var p=pts[r[0]],q=pts[r[1]],mx=(p[0]+q[0])/2,my=(p[1]+q[1])/2-26;
+    svg.appendChild(el('path',{d:'M'+p[0]+' '+p[1]+' Q'+mx+' '+my+' '+q[0]+' '+q[1],'class':'route',style:'animation-delay:'+(i*0.6)+'s'}));});
+  pts.forEach(function(p){svg.appendChild(el('circle',{cx:p[0],cy:p[1],r:4.5,'class':'port'}));});
+
+  /* form */
+  // At go-live, set ENDPOINT to the RFQ receiver URL. Empty = the buyer's email app opens with the request filled in.
+  var ENDPOINT="", TO="scott@summitcreditorcapital.com", PREVIEW=false;
+  var flag=document.getElementById('previewFlag'); if(!PREVIEW) flag.hidden=true;
+  var form=document.getElementById('rfqForm'), input=document.getElementById('f_files'), drop=document.getElementById('drop'),
+      list=document.getElementById('fileList'), msg=document.getElementById('formMsg'), send=document.getElementById('sendBtn'), files=[];
+  var MAX_FILES=5, MAX_BYTES=10*1024*1024;
+  function fmt(n){return n<1048576?(n/1024).toFixed(0)+' KB':(n/1048576).toFixed(1)+' MB';}
+  function total(){return files.reduce(function(a,f){return a+f.size;},0);}
+  function render(){list.innerHTML='';files.forEach(function(f,i){var li=document.createElement('li'),s=document.createElement('span'),b=document.createElement('button');
+    s.textContent=f.name+' · '+fmt(f.size);b.type='button';b.textContent='Remove';b.addEventListener('click',function(){files.splice(i,1);render();});li.appendChild(s);li.appendChild(b);list.appendChild(li);});}
+  function show(kind,html){msg.className='msg '+kind;msg.innerHTML=html;msg.hidden=false;}
+  function esc(t){return String(t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  function add(fl){for(var i=0;i<fl.length;i++){ if(files.length>=MAX_FILES){show('err','You can attach up to 5 files. Email extra files to '+TO+'.');break;}
+    if(total()+fl[i].size>MAX_BYTES){show('err',esc(fl[i].name)+' would push the total over 10 MB. Email large files to '+TO+'.');continue;} files.push(fl[i]);} render();}
+  drop.addEventListener('click',function(){input.click();});
+  drop.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();input.click();}});
+  input.addEventListener('change',function(){add(input.files);input.value='';});
+  ['dragenter','dragover'].forEach(function(t){drop.addEventListener(t,function(e){e.preventDefault();drop.classList.add('over');});});
+  ['dragleave','drop'].forEach(function(t){drop.addEventListener(t,function(e){e.preventDefault();drop.classList.remove('over');});});
+  drop.addEventListener('drop',function(e){if(e.dataTransfer&&e.dataTransfer.files)add(e.dataTransfer.files);});
+  function ref(){var d=new Date(),p=function(n){return String(n).padStart(2,'0');},r=Math.random().toString(36).slice(2,6).toUpperCase();
+    return 'SPT-'+String(d.getFullYear()).slice(2)+p(d.getMonth()+1)+p(d.getDate())+'-'+r;}
+  function readB64(f){return new Promise(function(res,rej){var r=new FileReader();r.onload=function(){res({name:f.name,type:f.type||'application/octet-stream',data:String(r.result).split(',')[1]});};r.onerror=rej;r.readAsDataURL(f);});}
+
+  form.addEventListener('submit',function(e){
+    e.preventDefault(); msg.hidden=true;
+    var v=function(id){return document.getElementById(id).value.trim();};
+    var req=[['f_name','name'],['f_company','company'],['f_email','email'],['f_phone','phone'],['f_country','ship to country']];
+    var missing=req.filter(function(p){return !v(p[0]);});
+    if(missing.length){show('err','Please fill in: '+missing.map(function(p){return p[1];}).join(', ')+'.');document.getElementById(missing[0][0]).focus();return;}
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v('f_email'))){show('err','Please check your email address.');document.getElementById('f_email').focus();return;}
+    if(!v('f_parts')&&!files.length){show('err','Add your part numbers, or attach a file.');document.getElementById('f_parts').focus();return;}
+    if(!document.getElementById('f_terms').checked){show('err','Please tick the box to confirm the $250 minimum and card-or-wire payment.');document.getElementById('f_terms').focus();return;}
+    if(v('f_website')){show('ok','Thank you. Your request has been received.');form.reset();files=[];render();return;}
+    var id=ref(), urg=(form.querySelector('input[name=urgency]:checked')||{}).value||'Standard', docs=document.getElementById('f_docs').checked;
+    var p={ref:id,name:v('f_name'),company:v('f_company'),email:v('f_email'),phone:v('f_phone'),country:v('f_country'),model:v('f_model'),parts:v('f_parts'),urgency:urg,paperwork:docs?'Required':'Not stated',page:location.href.split('#')[0]};
+    if(!ENDPOINT){
+      var subject='RFQ '+id+' — '+urg+' — '+p.company;
+      var body='Reference: '+id+'\nPriority: '+urg+'\nPaperwork: '+p.paperwork+'\n\nName: '+p.name+'\nCompany: '+p.company+'\nEmail: '+p.email+'\nPhone/WhatsApp: '+p.phone+'\nShip to: '+p.country+'\nEquipment/model: '+(p.model||'-')+'\n\nParts:\n'+(p.parts||'(see attached files)')+'\n';
+      var href='mailto:'+TO+'?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
+      show('info','Your reference is <b>'+id+'</b>. Your email app should open with the request filled in: attach any files there and press Send. If it did not open, email your list to '+TO+' and quote '+id+'.');
+      try{window.location.href=href;}catch(err){}
+      return;
+    }
+    send.disabled=true; send.textContent='Sending…';
+    Promise.all(files.map(readB64)).then(function(enc){p.files=enc;return fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(p)});})
+      .then(function(r){return r.json();}).then(function(j){if(!j||!j.ok)throw new Error('Server error');
+        show('ok','Thank you. Your request is in. Your reference is <b>'+id+'</b>. '+(urg==='Standard'?'Our target is a quote the same business day whenever possible.':'Your request gets priority.'));form.reset();files=[];render();})
+      .catch(function(){show('err','Your list did not go through. Please email it to '+TO+' or call +1 (949) 513-0881, and quote '+id+'.');})
+      .then(function(){send.disabled=false;send.textContent='Send my parts list';});
+  });
+})();
+</script>
+
+</body>
+</html>
