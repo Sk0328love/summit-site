@@ -392,6 +392,7 @@
             }
             document.getElementById('success-message').classList.remove('hidden');
             document.getElementById('ref-display').innerText = refNumber;
+            document.getElementById('form-container').scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
 
         async function handleFormSubmit(e) {
