@@ -247,9 +247,7 @@
                         </div>
 
                         <div class="mb-8">
-                            <label class="block text-sm font-bold text-navy mb-2" for="attachment">File Attachment (Optional)</label>
-                            <input type="file" id="attachment" accept=".csv, .xls, .xlsx, .pdf, image/*" class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-navy file:text-white hover:file:bg-gold transition-colors cursor-pointer">
-                            <p class="text-xs text-gray-500 mt-2 italic">Excel, CSV, PDF, or photo. Note: Since this opens your email client, you will need to manually attach the file to the resulting email.</p>
+                            <p class="text-sm text-gray-600">Have a spreadsheet, PDF or photo? Send this form first. You will get a reference number &mdash; then email the file to <a href="mailto:scott@summitcreditorcapital.com" class="text-gold hover:underline">scott@summitcreditorcapital.com</a> with that number in the subject.</p>
                         </div>
 
                         <div class="space-y-4 mb-8">
@@ -264,7 +262,7 @@
                             </label>
                         </div>
 
-                        <button type="submit" class="w-full py-4 bg-navy text-white font-bold uppercase tracking-wider rounded-md hover:bg-gold transition-colors duration-300 shadow-md">Send my parts list</button>
+                        <button type="submit" id="submit-btn" class="w-full py-4 bg-navy text-white font-bold uppercase tracking-wider rounded-md hover:bg-gold transition-colors duration-300 shadow-md">Send my parts list</button>
                         <p class="text-center text-xs text-red-600 mt-4 font-semibold uppercase tracking-wider">Note: No military or ITAR-controlled parts.</p>
                     </form>
 
@@ -273,13 +271,13 @@
                         <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
                             <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                         </div>
-                        <h3 class="font-serif text-3xl text-navy mb-4">Request Generated</h3>
-                        <p class="text-gray-600 mb-6">Your email program has opened with your request filled in. Press Send there to deliver it to us.</p>
+                        <h3 class="font-serif text-3xl text-navy mb-4" id="success-title">Request received</h3>
+                        <p class="text-gray-600 mb-6" id="success-text">Thank you. Your parts list is with us. We reply by email, usually the same business day.</p>
                         <div class="bg-gray-50 p-6 rounded-lg inline-block border border-gray-200">
                             <p class="text-sm text-gray-500 uppercase tracking-wider mb-2">Reference Number</p>
                             <p class="text-xl font-bold text-navy" id="ref-display"></p>
                         </div>
-                        <p class="mt-6 text-sm text-gray-500">If your email client did not open, please send your details directly to <a href="mailto:scott@summitcreditorcapital.com" class="text-gold hover:underline">scott@summitcreditorcapital.com</a>.</p>
+                        <p class="mt-6 text-sm text-gray-500">Have a file for this request? Email it to <a href="mailto:scott@summitcreditorcapital.com" class="text-gold hover:underline">scott@summitcreditorcapital.com</a> with your reference number in the subject.</p>
                     </div>
                 </div>
             </div>
@@ -373,15 +371,42 @@
         });
 
         // Form Submission Logic
-        function handleFormSubmit(e) {
+        // Sends the request to Web3Forms, which emails it to scott@summitcreditorcapital.com.
+        // If that send fails, falls back to opening the buyer's own email program (old behavior).
+        const WEB3FORMS_KEY = '76c0b678-4f97-4225-9be6-bc06287b9fd6';
+
+        function makeRef() {
+            const date = new Date();
+            const yearStr = String(date.getFullYear()).slice(-2);
+            const monthStr = String(date.getMonth() + 1).padStart(2, '0');
+            const dayStr = String(date.getDate()).padStart(2, '0');
+            const randSuffix = Math.floor(1000 + Math.random() * 9000);
+            return `SCC-${yearStr}${monthStr}${dayStr}-${randSuffix}`;
+        }
+
+        function showSuccess(refNumber, usedEmailProgram) {
+            document.getElementById('quote-form').classList.add('hidden');
+            if (usedEmailProgram) {
+                document.getElementById('success-title').innerText = 'Almost done';
+                document.getElementById('success-text').innerText = 'Your email program has opened with your request filled in. Press Send there to deliver it to us.';
+            }
+            document.getElementById('success-message').classList.remove('hidden');
+            document.getElementById('ref-display').innerText = refNumber;
+        }
+
+        async function handleFormSubmit(e) {
             e.preventDefault();
-            
+
             // Honeypot check for basic spam prevention
             if (document.getElementById('hp_field').value !== '') {
                 return false;
             }
 
-            // Collect form data
+            const btn = document.getElementById('submit-btn');
+            const btnText = btn.innerText;
+            btn.disabled = true;
+            btn.innerText = 'Sending...';
+
             const formData = {
                 name: document.getElementById('name').value,
                 company: document.getElementById('company').value,
@@ -393,43 +418,58 @@
                 parts: document.getElementById('parts').value,
                 certReq: document.getElementById('cert').checked ? 'Yes' : 'No',
             };
+            const refNumber = makeRef();
+            const subjectLine = `RFQ ${refNumber} — ${formData.urgency} — ${formData.company}`;
 
-            // Format Subject and Body for mailto
-            
-            let bodyString = `REQUEST FOR QUOTE\n`;
-            bodyString += `---------------------------------\n`;
-            bodyString += `Name: ${formData.name}\n`;
-            bodyString += `Company: ${formData.company}\n`;
-            bodyString += `Email: ${formData.email}\n`;
-            bodyString += `Phone: ${formData.phone}\n`;
-            bodyString += `Ship-to Country: ${formData.country}\n`;
-            bodyString += `Urgency Level: ${formData.urgency}\n`;
-            if (formData.model) bodyString += `Equipment / model: ${formData.model}\n`;
-            bodyString += `Requires Certification (8130-3/EASA): ${formData.certReq}\n\n`;
-            bodyString += `---------------------------------\n`;
-            bodyString += `PARTS LIST:\n\n${formData.parts}\n\n`;
-            bodyString += `---------------------------------\n`;
-            bodyString += `Acknowledged $250 minimum order and payment terms.\n`;
-
-            
-            // Generate Reference Number
-            const date = new Date();
-            const yearStr = String(date.getFullYear()).slice(-2);
-            const monthStr = String(date.getMonth() + 1).padStart(2, '0');
-            const dayStr = String(date.getDate()).padStart(2, '0');
-            const randSuffix = Math.floor(1000 + Math.random() * 9000);
-            const refNumber = `SCC-${yearStr}${monthStr}${dayStr}-${randSuffix}`;
-
-            const subject = encodeURIComponent(`RFQ ${refNumber} — ${formData.urgency} — ${formData.company}`);
-            const encodedBody = encodeURIComponent(bodyString + `\nReference: ${refNumber}\n`);
-            // Trigger mailto client
-            window.location.href = `mailto:scott@summitcreditorcapital.com?subject=${subject}&body=${encodedBody}`;
-
-            // Update UI
-            document.getElementById('quote-form').classList.add('hidden');
-            const successMsg = document.getElementById('success-message');
-            successMsg.classList.remove('hidden');
-            document.getElementById('ref-display').innerText = refNumber;
+            try {
+                const res = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                    body: JSON.stringify({
+                        access_key: WEB3FORMS_KEY,
+                        subject: subjectLine,
+                        from_name: 'Summit website',
+                        replyto: formData.email,
+                        botcheck: '',
+                        'Reference': refNumber,
+                        'Name': formData.name,
+                        'Company': formData.company,
+                        'Email': formData.email,
+                        'Phone / WhatsApp': formData.phone,
+                        'Ship-to country': formData.country,
+                        'Urgency': formData.urgency,
+                        'Equipment / model': formData.model || '(not given)',
+                        'Needs 8130-3 / EASA paperwork': formData.certReq,
+                        'Parts list': formData.parts,
+                        'Terms': 'Agreed to $250 minimum order and payment by card or wire before shipment'
+                    })
+                });
+                const out = await res.json();
+                if (!res.ok || !out.success) throw new Error(out.message || 'send failed');
+                showSuccess(refNumber, false);
+            } catch (err) {
+                // Fallback: open the buyer's email program with the request filled in
+                let bodyString = `REQUEST FOR QUOTE\n`;
+                bodyString += `---------------------------------\n`;
+                bodyString += `Name: ${formData.name}\n`;
+                bodyString += `Company: ${formData.company}\n`;
+                bodyString += `Email: ${formData.email}\n`;
+                bodyString += `Phone: ${formData.phone}\n`;
+                bodyString += `Ship-to Country: ${formData.country}\n`;
+                bodyString += `Urgency Level: ${formData.urgency}\n`;
+                if (formData.model) bodyString += `Equipment / model: ${formData.model}\n`;
+                bodyString += `Requires Certification (8130-3/EASA): ${formData.certReq}\n\n`;
+                bodyString += `---------------------------------\n`;
+                bodyString += `PARTS LIST:\n\n${formData.parts}\n\n`;
+                bodyString += `---------------------------------\n`;
+                bodyString += `Acknowledged $250 minimum order and payment terms.\n`;
+                bodyString += `\nReference: ${refNumber}\n`;
+                window.location.href = `mailto:scott@summitcreditorcapital.com?subject=${encodeURIComponent(subjectLine)}&body=${encodeURIComponent(bodyString)}`;
+                showSuccess(refNumber, true);
+            } finally {
+                btn.disabled = false;
+                btn.innerText = btnText;
+            }
         }
     </script>
 </body>
