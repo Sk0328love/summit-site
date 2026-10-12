@@ -1,0 +1,344 @@
+{
+ "seller": "Summit Aircraft & Electronic Components",
+ "contact": "scott@summitcreditorcapital.com",
+ "phone": "(949) 696-5784",
+ "currency": "USD",
+ "updated": "2026-10-14",
+ "parts": [
+  {
+   "part_number": "XCF04SVOG20C",
+   "manufacturer": "AMD (Xilinx)",
+   "description": "Platform Flash In-System Programmable Configuration PROM, 4 Mbit, 3.3 V, TSSOP-20",
+   "category": "Memory / FPGA configuration",
+   "package": "TSSOP-20 (VOG20), tube",
+   "condition": "New original",
+   "date_code": "22+",
+   "quantity": 500,
+   "moq": 1,
+   "price_breaks": [
+    {
+     "qty": 1,
+     "price": 79.0
+    },
+    {
+     "qty": 10,
+     "price": 72.0
+    },
+    {
+     "qty": 100,
+     "price": 69.0
+    }
+   ],
+   "lead_time": "5-7 business days",
+   "url": "https://summitcreditorcapital.com/catalog/xcf04svog20c.html"
+  },
+  {
+   "part_number": "XCF01SVOG20C",
+   "manufacturer": "AMD (Xilinx)",
+   "description": "Platform Flash In-System Programmable Configuration PROM, 1 Mbit, 3.3 V, TSSOP-20",
+   "category": "Memory / FPGA configuration",
+   "package": "TSSOP-20 (VOG20), tube",
+   "condition": "New original",
+   "date_code": "24+",
+   "quantity": 500,
+   "moq": 1,
+   "price_breaks": [
+    {
+     "qty": 1,
+     "price": 39.5
+    },
+    {
+     "qty": 10,
+     "price": 36.5
+    },
+    {
+     "qty": 100,
+     "price": 34.5
+    }
+   ],
+   "lead_time": "5-7 business days",
+   "url": "https://summitcreditorcapital.com/catalog/xcf01svog20c.html"
+  },
+  {
+   "part_number": "EPM240T100C5N",
+   "manufacturer": "Intel (Altera)",
+   "description": "MAX II CPLD, 240 logic elements, 80 I/O, 2.5/3.3 V, TQFP-100",
+   "category": "Programmable logic",
+   "package": "TQFP-100, tray",
+   "condition": "New original",
+   "date_code": "25+",
+   "quantity": 500,
+   "moq": 1,
+   "price_breaks": [
+    {
+     "qty": 1,
+     "price": 6.95
+    },
+    {
+     "qty": 10,
+     "price": 6.45
+    },
+    {
+     "qty": 100,
+     "price": 5.95
+    }
+   ],
+   "lead_time": "5-7 business days",
+   "url": "https://summitcreditorcapital.com/catalog/epm240t100c5n.html"
+  },
+  {
+   "part_number": "G2R-1-E DC12",
+   "manufacturer": "Omron",
+   "description": "General-purpose power relay, SPDT, 16 A, 12 VDC coil, PCB mount",
+   "category": "Relays",
+   "package": "Bulk / tube",
+   "condition": "New original",
+   "date_code": "26+",
+   "quantity": 1000,
+   "moq": 1,
+   "price_breaks": [
+    {
+     "qty": 1,
+     "price": 2.25
+    },
+    {
+     "qty": 100,
+     "price": 1.99
+    },
+    {
+     "qty": 500,
+     "price": 1.85
+    }
+   ],
+   "lead_time": "5-7 business days",
+   "url": "https://summitcreditorcapital.com/catalog/g2r-1-e-dc12.html"
+  },
+  {
+   "part_number": "TPS54331DDAR",
+   "manufacturer": "Texas Instruments",
+   "description": "3 A, 28 V input step-down DC-DC converter, SO PowerPAD-8",
+   "category": "Power management",
+   "package": "SO PowerPAD-8, 2,500/reel",
+   "condition": "New original",
+   "date_code": "25+",
+   "quantity": 2500,
+   "moq": 1,
+   "price_breaks": [
+    {
+     "qty": 1,
+     "price": 0.58
+    },
+    {
+     "qty": 100,
+     "price": 0.45
+    },
+    {
+     "qty": 1000,
+     "price": 0.39
+    }
+   ],
+   "lead_time": "5-7 business days",
+   "url": "https://summitcreditorcapital.com/catalog/tps54331ddar.html"
+  },
+  {
+   "part_number": "CL10B104KB8NNNC",
+   "manufacturer": "Samsung Electro-Mechanics",
+   "description": "MLCC 0.1 uF, 50 V, X7R, 10%, 0603",
+   "category": "Capacitors",
+   "package": "0603, 4,000/reel",
+   "condition": "New original",
+   "date_code": "25+",
+   "quantity": 40000,
+   "moq": 4000,
+   "price_breaks": [
+    {
+     "qty": 4000,
+     "price": 0.011
+    },
+    {
+     "qty": 20000,
+     "price": 0.0085
+    },
+    {
+     "qty": 40000,
+     "price": 0.0075
+    }
+   ],
+   "lead_time": "5-7 business days",
+   "url": "https://summitcreditorcapital.com/catalog/cl10b104kb8nnnc.html"
+  },
+  {
+   "part_number": "25ZLH1000MEFC10X23",
+   "manufacturer": "Rubycon",
+   "description": "Aluminum electrolytic capacitor, ZLH series, 1,000 uF, 25 V, low impedance, radial 10x23 mm",
+   "category": "Capacitors",
+   "package": "Radial, bulk/ammo",
+   "condition": "New original",
+   "date_code": "25+",
+   "quantity": 5000,
+   "moq": 1,
+   "price_breaks": [
+    {
+     "qty": 1,
+     "price": 0.25
+    },
+    {
+     "qty": 100,
+     "price": 0.199
+    },
+    {
+     "qty": 1000,
+     "price": 0.169
+    }
+   ],
+   "lead_time": "5-7 business days",
+   "url": "https://summitcreditorcapital.com/catalog/25zlh1000mefc10x23.html"
+  },
+  {
+   "part_number": "LM358DR2G",
+   "manufacturer": "onsemi",
+   "description": "Dual operational amplifier, single supply, SOIC-8",
+   "category": "Amplifiers",
+   "package": "SOIC-8, 2,500/reel",
+   "condition": "New original",
+   "date_code": "26+",
+   "quantity": 5000,
+   "moq": 100,
+   "price_breaks": [
+    {
+     "qty": 100,
+     "price": 0.06
+    },
+    {
+     "qty": 1000,
+     "price": 0.049
+    },
+    {
+     "qty": 2500,
+     "price": 0.042
+    }
+   ],
+   "lead_time": "5-7 business days",
+   "url": "https://summitcreditorcapital.com/catalog/lm358dr2g.html"
+  },
+  {
+   "part_number": "SP3243EUER-L/TR",
+   "manufacturer": "MaxLinear (Exar)",
+   "description": "RS-232 transceiver, 3 drivers / 5 receivers, 3.0-5.5 V, TSSOP-28",
+   "category": "Interface",
+   "package": "TSSOP-28, reel",
+   "condition": "New original",
+   "date_code": "25+",
+   "quantity": 1000,
+   "moq": 1,
+   "price_breaks": [
+    {
+     "qty": 1,
+     "price": 2.95
+    },
+    {
+     "qty": 100,
+     "price": 2.65
+    },
+    {
+     "qty": 1000,
+     "price": 2.45
+    }
+   ],
+   "lead_time": "5-7 business days",
+   "url": "https://summitcreditorcapital.com/catalog/sp3243euer-l-tr.html"
+  },
+  {
+   "part_number": "DRV8332DKDR",
+   "manufacturer": "Texas Instruments",
+   "description": "Three-phase brushless DC motor driver, 3x 8 A, 50 V, HSSOP-36 PowerPAD",
+   "category": "Motor drivers",
+   "package": "HSSOP-36, reel",
+   "condition": "New original",
+   "date_code": "23+",
+   "quantity": 500,
+   "moq": 1,
+   "price_breaks": [
+    {
+     "qty": 1,
+     "price": 595.0
+    },
+    {
+     "qty": 5,
+     "price": 569.0
+    },
+    {
+     "qty": 25,
+     "price": 549.0
+    }
+   ],
+   "lead_time": "5-7 business days",
+   "url": "https://summitcreditorcapital.com/catalog/drv8332dkdr.html"
+  },
+  {
+   "part_number": "E3Z-D61",
+   "manufacturer": "Omron",
+   "description": "Photoelectric sensor, diffuse-reflective, 100 mm, NPN, 2 m pre-wired cable",
+   "category": "Sensors / industrial automation",
+   "package": "Boxed",
+   "condition": "New original",
+   "date_code": "24+",
+   "quantity": 50,
+   "moq": 1,
+   "price_breaks": [
+    {
+     "qty": 1,
+     "price": 69.0
+    },
+    {
+     "qty": 10,
+     "price": 64.0
+    }
+   ],
+   "lead_time": "5-7 business days",
+   "url": "https://summitcreditorcapital.com/catalog/e3z-d61.html"
+  },
+  {
+   "part_number": "Q03UDVCPU",
+   "manufacturer": "Mitsubishi Electric",
+   "description": "MELSEC-Q series universal model high-speed CPU module",
+   "category": "Industrial automation / PLC",
+   "package": "Boxed",
+   "condition": "New original",
+   "date_code": "23+",
+   "quantity": 5,
+   "moq": 1,
+   "price_breaks": [],
+   "lead_time": "7-10 business days",
+   "url": "https://summitcreditorcapital.com/catalog/q03udvcpu.html"
+  },
+  {
+   "part_number": "SGD7S-2R8A00A",
+   "manufacturer": "Yaskawa",
+   "description": "Sigma-7 SERVOPACK servo amplifier, 400 W, 200 V, analog/pulse",
+   "category": "Industrial automation / servo",
+   "package": "Boxed",
+   "condition": "New original",
+   "date_code": "23+",
+   "quantity": 5,
+   "moq": 1,
+   "price_breaks": [],
+   "lead_time": "7-10 business days",
+   "url": "https://summitcreditorcapital.com/catalog/sgd7s-2r8a00a.html"
+  },
+  {
+   "part_number": "6ES7315-2AH14-0AB0",
+   "manufacturer": "Siemens",
+   "description": "SIMATIC S7-300 CPU 315-2 DP, 256 KB work memory, MPI + DP",
+   "category": "Industrial automation / PLC",
+   "package": "Boxed",
+   "condition": "New original",
+   "date_code": "16+/23+",
+   "quantity": 5,
+   "moq": 1,
+   "price_breaks": [],
+   "lead_time": "7-10 business days",
+   "url": "https://summitcreditorcapital.com/catalog/6es7315-2ah14-0ab0.html"
+  }
+ ]
+}
