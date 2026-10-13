@@ -308,9 +308,23 @@
    "date_code": "23+",
    "quantity": 5,
    "moq": 1,
-   "price_breaks": [],
+   "price_breaks": [{"qty": 1, "price": 1350.0}],
    "lead_time": "7-10 business days",
    "url": "https://summitcreditorcapital.com/catalog/q03udvcpu.html"
+  },
+  {
+   "part_number": "CJ1W-ID211",
+   "manufacturer": "Omron",
+   "description": "SYSMAC CJ1 DC input unit, 16 points, 24 VDC",
+   "category": "Industrial automation / PLC",
+   "package": "Boxed",
+   "condition": "New original",
+   "date_code": "23+",
+   "quantity": 10,
+   "moq": 1,
+   "price_breaks": [{"qty": 1, "price": 450.0}],
+   "lead_time": "7-10 business days",
+   "url": "https://summitcreditorcapital.com/catalog/cj1w-id211.html"
   },
   {
    "part_number": "SGD7S-2R8A00A",
